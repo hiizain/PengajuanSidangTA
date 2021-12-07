@@ -69,8 +69,12 @@
           <li><a class="nav-link scrollto " href="#hero">Skema</a></li>
           <li><a class="nav-link scrollto " href="#hero">Cyberampus</a></li>
           <li><a class="nav-link scrollto" href="#about">HEBAT UNAIR</a></li>
-          <li class="nav-link scrollto">
-            <a class="getstarted scrollto" href="#"><span>Loguot</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="getstarted scrollto" href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/login-admin">PAA</a></li>
+              <li><a href="/login-petugas">Dosen</a></li>
+              <li><a href="/login-ortu">Mahasiswa</a></li>
+            </ul>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
