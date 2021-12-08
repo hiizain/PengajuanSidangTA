@@ -41,10 +41,10 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-sm-6 py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Bimbingan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Penelitian</h6>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-bimbingan-tambah" class="btn btn-primary tombol">Tambah Data</a>
+                    <a href="/mahasiswa-sidang-tambah" class="btn btn-primary tombol">Tambah Data</a>
                     <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
@@ -55,41 +55,28 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Komentar</th>
-                            <th>Laporan TA</th>
+                            <th>Hasil</th>
+                            <th>Status Sidang</th>
+                            <th>Laporan Final</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Komentar</th>
-                            <th>Laporan TA</th>
+                            <th>Hasil</th>
+                            <th>Status Sidang</th>
+                            <th>Laporan Final</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($bimbingan as $item)
+                        @foreach($sidang as $item)
                             <tr>
                                 <td>{{ $item->TANGGAL }}</td>
-                                <td>
-                                    <?php
-                                    if ($item->STATUS == 2){
-                                        echo "Menunggu Disetujui";
-                                    } else if ($item->STATUS == 1){
-                                        echo "Disetujui";
-                                    } else echo "Ditolak";
-                                    ?>
-                                </td>
-                                <td>{{ $item->KOMENTAR }}</td>
-                                <td>
-                                    <a href="{{ asset('storage/' . $item->PATH_LAPORAN_TA) }}" 
-                                        target="_blank">
-                                        {{ $item->LAPORAN_TA }}
-                                    </a>
-                                </td>
+                                <td>{{ $item->HASIL }}</td>
+                                <td>{{ $item->STATUS }}</td>
+                                <td>{{ $item->LAPORAN_TA_FINAL }}</td>
                                 <td>
                                     <form action="/#" method="post" class="d-inline">
                                         @csrf

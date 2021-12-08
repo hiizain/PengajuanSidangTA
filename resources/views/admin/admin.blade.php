@@ -1,8 +1,13 @@
-@extends('../mahasiswa/layouts/master')
+@extends('../admin/layouts/master')
 
 @section('container')
 
     <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Daftar Balita</h1>
+    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+        For more information about DataTables, please visit the <a target="_blank"
+            href="https://datatables.net">official DataTables documentation</a>.</p>
+
     <div>
         @if (session()->has('tambahSuccess'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,10 +46,10 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-sm-6 py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Bimbingan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-bimbingan-tambah" class="btn btn-primary tombol">Tambah Data</a>
+                    <a href="/admin-admin-tambah" class="btn btn-primary tombol">Tambah Data</a>
                     <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
@@ -54,51 +59,44 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Komentar</th>
-                            <th>Laporan TA</th>
+                            <th>ID_PEG</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Alamat</th>
+                            <th>Nomor Telp.</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Komentar</th>
-                            <th>Laporan TA</th>
+                            <th>ID_PEG</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Alamat</th>
+                            <th>Nomor Telp.</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($bimbingan as $item)
+                        @foreach($admin as $item)
                             <tr>
-                                <td>{{ $item->TANGGAL }}</td>
+                                <td>{{ $item->ID_PEG }}</td>
+                                <td>{{ $item->NAMA }}</td>
+                                <td>{{ $item->JENIS_KELAMIN }}</td>
+                                <td>{{ $item->TANGGAL_LAHIR }}</td>
+                                <td>{{ $item->ALAMAT }}</td>
+                                <td>{{ $item->NO_TELPON }}</td>
                                 <td>
-                                    <?php
-                                    if ($item->STATUS == 2){
-                                        echo "Menunggu Disetujui";
-                                    } else if ($item->STATUS == 1){
-                                        echo "Disetujui";
-                                    } else echo "Ditolak";
-                                    ?>
-                                </td>
-                                <td>{{ $item->KOMENTAR }}</td>
-                                <td>
-                                    <a href="{{ asset('storage/' . $item->PATH_LAPORAN_TA) }}" 
-                                        target="_blank">
-                                        {{ $item->LAPORAN_TA }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <form action="/#" method="post" class="d-inline">
+                                    <form action="/edit-balita" method="post" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
                                         <button class="btn btn-primary tombol border-0">
                                             Edit
                                         </button>
                                     </form>
-                                    <form action="/#" method="post" class="d-inline">
+                                    <form action="/balita-hapus" method="post" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
                                         <button class="btn btn-danger tombol border-0" onclick="return confirm('Akan menghapus data');">

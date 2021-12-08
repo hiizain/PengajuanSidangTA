@@ -22,12 +22,15 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         if ($userFound = User::where('username',$request->username)->first()){
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-    
-                return redirect()->intended('/mahasiswa-penelitian');
+            if ($mahasiswa = Mahasiswa::where('NIM',$userFound->username)->first()){
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+        
+                    return redirect()->intended('/mahasiswa-penelitian');
+                } else
+                return back()->with('loginError', 'Login gagal');
             } else
-            return back()->with('loginError', 'Login gagal');
+            return back()->with('loginError', 'Anda bukan mahasiswa');
         } else 
         return back()->with('loginError', 'Login gagal');
     }
@@ -42,12 +45,15 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         if ($userFound = User::where('username',$request->username)->first()){
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-    
-                return redirect()->intended('/dosen-mahasiswa');
+            if ($dosen = Dosen::where('NIP',$userFound->username)->first()){
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+        
+                    return redirect()->intended('/dosen-mahasiswa');
+                } else
+                return back()->with('loginError', 'Login gagal');
             } else
-            return back()->with('loginError', 'Login gagal');
+            return back()->with('loginError', 'Anda bukan dosen');
         } else 
         return back()->with('loginError', 'Login gagal');
     }
@@ -62,15 +68,15 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         if ($userFound = User::where('username',$request->username)->first()){
-        if ($admin = Admin::where('ID_PEG',$userFound->username)->first()){
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-    
-                return redirect()->intended('/admin', ['admin'=>$admin]);
+            if ($admin = Admin::where('ID_PEG',$userFound->username)->first()){
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+        
+                    return redirect()->intended('/admin');
+                } else
+                return back()->with('loginError', 'Login gagal');
             } else
-            return back()->with('loginError', 'Login gagal');
-        } else
-        return back()->with('loginError', 'Anda bukan admin');
+            return back()->with('loginError', 'Anda bukan admin');
         } else 
         return back()->with('loginError', 'Login gagal');
     }

@@ -17,10 +17,6 @@
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Nim" name="nim">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
                         placeholder="Judul TA" name="judul_ta">
             </div>
             <div class="form-group row">

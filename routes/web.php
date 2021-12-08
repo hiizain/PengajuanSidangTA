@@ -26,6 +26,10 @@ Route::get('/admin', function () {
 });
 
 // Admin
+Route::get('/admin-admin', [Admin::class, 'admin']);
+Route::get('/admin-admin-tambah', [Admin::class, 'tambahAdmin']);
+Route::post('/admin-admin-create', [Admin::class, 'createAdmin']);
+
 Route::get('/admin-mahasiswa', [Admin::class, 'mahasiswa']);
 Route::get('/admin-mahasiswa-tambah', [Admin::class, 'tambahMhs']);
 Route::post('/admin-mahasiswa-create', [Admin::class, 'createMhs']);

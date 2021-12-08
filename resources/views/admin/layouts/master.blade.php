@@ -114,6 +114,7 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Data Master:</h6>
+                      <a class="collapse-item" href="/admin-admin">PAA</a>
                       <a class="collapse-item" href="/admin-mahasiswa">Mahasiswa</a>
                       <a class="collapse-item" href="/admin-dosen">Dosen</a>
                   </div>

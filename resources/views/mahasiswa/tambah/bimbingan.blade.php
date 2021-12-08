@@ -13,7 +13,7 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Tambahkan Data Kecamatan!</h1>
         </div>
-        <form action="/mahasiswa-bimbingan-create" method="post">
+        <form action="/mahasiswa-bimbingan-create" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <select name="id_penelitian" class="form-control text-center">
@@ -28,7 +28,7 @@
                         placeholder="Tanggal Bimbingan" name="tanggal">
             </div>
             <div class="form-group">
-                <input class="form-control" type="file" id="formFile" name="laporan_ta">
+                <input class="form-control" type="file" id="laporan_ta" name="laporan_ta">
               </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
