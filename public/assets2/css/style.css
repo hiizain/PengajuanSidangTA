@@ -1384,7 +1384,7 @@ section {
 }
 
 #wrapper {
-  margin-top: 100px;
+  margin-top: 110px;
   display: flex;
   background-color: #004680;
 }
@@ -1397,4 +1397,5 @@ section {
 
 #wrapper #content-wrapper #content {
   flex: 1 0 auto;
+  margin-top: 20px;
 }

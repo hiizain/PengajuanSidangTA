@@ -70,7 +70,10 @@
           <li><a class="nav-link scrollto " href="#hero">Cyberampus</a></li>
           <li><a class="nav-link scrollto" href="#about">HEBAT UNAIR</a></li>
           <li class="nav-link scrollto">
-            <a class="getstarted scrollto" href="#"><span>Loguot</span> <i class="bi bi-chevron-down"></i></a>
+            <form action="/logout" method="post">
+              @csrf
+              <button class="getstarted scrollto" href="/logout"><span>Loguot</span> <i class="bi bi-chevron-down"></i></button>
+            </form>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -111,10 +114,8 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Data Master:</h6>
-                      <a class="collapse-item" href="/kecamatan">Kecamatan</a>
-                      <a class="collapse-item" href="/kelurahan">Kelurahan</a>
-                      <a class="collapse-item" href="/posyandu">Posyandu</a>
-                      <a class="collapse-item" href="/role">Role</a>
+                      <a class="collapse-item" href="/admin-mahasiswa">Mahasiswa</a>
+                      <a class="collapse-item" href="/admin-dosen">Dosen</a>
                   </div>
               </div>
           </li>
@@ -130,25 +131,9 @@
                   data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Data Pendukung:</h6>
-                      <a class="collapse-item" href="/balita">Balita</a>
-                      <a class="collapse-item" href="/user">Kelola User</a>
-                  </div>
-              </div>
-          </li>
-
-          <!-- Nav Item - View Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseView"
-                  aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-history"></i>
-                  <span>View History Data</span>
-              </a>
-              <div id="collapseView" class="collapse" aria-labelledby="headingUtilities"
-                  data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Histori Data Masukan:</h6>
-                      <a class="collapse-item" href="/hposyandu">History Posyandu</a>
-                      <a class="collapse-item" href="/hbalita">Histori Balita</a>
+                      <a class="collapse-item" href="/balita">Penelitian TA</a>
+                      <a class="collapse-item" href="/balita">Bimbingan</a>
+                      <a class="collapse-item" href="/user">Sidang</a>
                   </div>
               </div>
           </li>

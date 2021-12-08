@@ -69,12 +69,11 @@
           <li><a class="nav-link scrollto " href="#hero">Skema</a></li>
           <li><a class="nav-link scrollto " href="#hero">Cyberampus</a></li>
           <li><a class="nav-link scrollto" href="#about">HEBAT UNAIR</a></li>
-          <li class="dropdown"><a class="getstarted scrollto" href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="/login-admin">PAA</a></li>
-              <li><a href="/login-petugas">Dosen</a></li>
-              <li><a href="/login-ortu">Mahasiswa</a></li>
-            </ul>
+          <li class="nav-link scrollto">
+            <form action="/logout" method="post">
+              @csrf
+              <button class="getstarted scrollto" href="/logout"><span>Loguot</span> <i class="bi bi-chevron-down"></i></button>
+            </form>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -107,37 +106,16 @@
 
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fas fa-fw fa-cog"></i>
-                  <span>Master</span>
-              </a>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Data Master:</h6>
-                      <a class="collapse-item" href="/kecamatan">Kecamatan</a>
-                      <a class="collapse-item" href="/kelurahan">Kelurahan</a>
-                      <a class="collapse-item" href="/posyandu">Posyandu</a>
-                      <a class="collapse-item" href="/role">Role</a>
-                  </div>
-              </div>
+            <a class="nav-link" href="/dosen-mahasiswa">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Bimbingan</span></a>
           </li>
 
-          <!-- Nav Item - Pendukung Collapse Menu -->
+          <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePendukung"
-                  aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-wrench"></i>
-                  <span>Pendukung</span>
-              </a>
-              <div id="collapsePendukung" class="collapse" aria-labelledby="headingUtilities"
-                  data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Data Pendukung:</h6>
-                      <a class="collapse-item" href="/balita">Balita</a>
-                      <a class="collapse-item" href="/user">Kelola User</a>
-                  </div>
-              </div>
+            <a class="nav-link" href="/dosen-sidang">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Sidang</span></a>
           </li>
 
           <!-- Nav Item - View Collapse Menu -->
