@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class Mahasiswa extends Controller
 {
-    public function penelitian(Request $request){
+    public function index(){
+        return view('mahasiswa/welcome');
+    }
+
+    public function penelitian(){
         $penelitian = Penelitian::where('NIM',Auth::user()->username)->get();
         return view('mahasiswa/penelitian', ['penelitian'=>$penelitian]);
     }
@@ -32,7 +36,13 @@ class Mahasiswa extends Controller
     }
 
     public function bimbingan(){
-        $bimbingan = Bimbingan::all();
+        $penelitian = Penelitian::where('NIM',Auth::user()->username)->get('ID_PENELITIAN');
+        $a=0;
+        foreach ($penelitian as $item){
+        $array[$a] = $item->ID_PENELITIAN;
+        $a++;
+        }
+        $bimbingan = Bimbingan::whereIn('ID_PENELITIAN', $array)->get();
         return view('mahasiswa/bimbingan', ['bimbingan'=>$bimbingan]);
     }
 

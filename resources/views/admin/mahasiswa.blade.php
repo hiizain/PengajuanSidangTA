@@ -67,6 +67,8 @@
                             <th>Prodi</th>
                             <th>Nomor Telp.</th>
                             <th>Email</th>
+                            <th>Nama Dosen Pembimbing</th>
+                            <th>Set Dosen Pembimbing</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -80,6 +82,8 @@
                             <th>Prodi</th>
                             <th>Nomor Telp.</th>
                             <th>Email</th>
+                            <th>Nama Dosen Pembimbing</th>
+                            <th>Set Dosen Pembimbing</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -94,6 +98,30 @@
                                 <td>{{ $item->PRODI }}</td>
                                 <td>{{ $item->NO_TELPON }}</td>
                                 <td>{{ $item->EMAIL }}</td>
+                                <td>
+                                    {{ $item->NIP_DOSEN }}
+                                </td>
+                                <td>
+                                    <form action="/admin-mahasiswa-setDosen" method="post">
+                                        @csrf
+                                        <div class="row pb-3">
+                                            <div class="col-md-12">
+                                                <input type="hidden" name="nim" value="{{ $item->NIM }}">
+                                                <select name="NIP" class="form-control text-center">
+                                                    <option value="">-Set Dosen-</option>
+                                                    @foreach ($dosenSet as $a)
+                                                        <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" name="submit" class="btn btn-success btn-user btn-block">
+                                                Set
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td>
                                     <form action="/edit-balita" method="post" class="d-inline">
                                         @csrf

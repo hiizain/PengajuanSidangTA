@@ -31,6 +31,7 @@ Route::get('/admin-admin-tambah', [Admin::class, 'tambahAdmin']);
 Route::post('/admin-admin-create', [Admin::class, 'createAdmin']);
 
 Route::get('/admin-mahasiswa', [Admin::class, 'mahasiswa']);
+Route::post('/admin-mahasiswa-setDosen', [Admin::class, 'setDosen']);
 Route::get('/admin-mahasiswa-tambah', [Admin::class, 'tambahMhs']);
 Route::post('/admin-mahasiswa-create', [Admin::class, 'createMhs']);
 
@@ -42,7 +43,7 @@ Route::post('/admin-dosen-create', [Admin::class, 'createDosen']);
 // Dosen
 Route::get('/dosen-mahasiswa', [Dosen::class, 'mahasiswa']);
 
-Route::get('/dosen-bimbingan', [Dosen::class, 'bimbingan']);
+Route::post('/dosen-bimbingan', [Dosen::class, 'bimbingan']);
 Route::post('/dosen-bimbingan-setuju', [Dosen::class, 'setujuBimbingan']);
 Route::post('/dosen-bimbingan-menolak', [Dosen::class, 'menolakBimbingan']);
 Route::post('/dosen-bimbingan-ACCFinal', [Dosen::class, 'ACCFinalBimbingan']);
@@ -50,6 +51,8 @@ Route::post('/dosen-bimbingan-komentar', [Dosen::class, 'komentarBimbingan']);
 
 
 // Mahasiswa
+Route::get('/mahasiswa', [Mahasiswa::class, 'index']);
+
 Route::get('/mahasiswa-penelitian', [Mahasiswa::class, 'penelitian']);
 Route::get('/mahasiswa-penelitian-tambah', [Mahasiswa::class, 'tambahPenelitian']);
 Route::post('/mahasiswa-penelitian-create', [Mahasiswa::class, 'createPenelitian']);

@@ -10,4 +10,6 @@ class Bimbingan extends Model
 {
     use SoftDeletes;
     protected $table = 'bimbingan_ta';
+
+    protected $fillable = ['status'];
 }

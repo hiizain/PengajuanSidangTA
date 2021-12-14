@@ -1,4 +1,4 @@
-@extends('../admin/layouts/master')
+@extends('../mahasiswa/layouts/master')
 
 @section('container')
 

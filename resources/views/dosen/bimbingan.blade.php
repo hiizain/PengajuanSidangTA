@@ -1,4 +1,4 @@
-@extends('../mahasiswa/layouts/master')
+@extends('../dosen/layouts/master')
 
 @section('container')
 
@@ -56,7 +56,9 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Link Zoom</th>
                             <th>Status</th>
+                            <th>Laporan TA</th>
                             <th>Komentar</th>
                             <th>Aksi</th>
                         </tr>
@@ -64,7 +66,9 @@
                     <tfoot>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Link Zoom</th>
                             <th>Status</th>
+                            <th>Laporan TA</th>
                             <th>Komentar</th>
                             <th>Aksi</th>
                         </tr>
@@ -73,6 +77,11 @@
                         @foreach($bimbingan as $item)
                             <tr>
                                 <td>{{ $item->TANGGAL }}</td>
+                                <td><?php
+                                    if ($item->STATUS == 1)
+                                    echo "Link Zoom Active";
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
                                     if ($item->STATUS == 2){
@@ -83,6 +92,12 @@
                                         echo "Ditolak";
                                     } else echo "Selesai";
                                     ?>
+                                </td>
+                                <td>
+                                    <a href="{{ asset('storage/' . $item->PATH_LAPORAN_TA) }}" 
+                                        target="_blank">
+                                        {{ $item->LAPORAN_TA }}
+                                    </a>
                                 </td>
                                 <td>
                                     <form action="/dosen-bimbingan-komentar" method="post" class="d-inline">
@@ -96,27 +111,43 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="/dosen-bimbingan-setuju" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
-                                        <button class="btn btn-success tombol border-0">
-                                            Setuju
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Action
                                         </button>
-                                    </form>
-                                    <form action="/dosen-bimbingan-menolak" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
-                                        <button class="btn btn-danger tombol border-0">
-                                            Tolak
-                                        </button>
-                                    </form>
-                                    <form action="/dosen-bimbingan-ACCFinal" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
-                                        <button class="btn btn-primary tombol border-0">
-                                            ACC Final
-                                        </button>
-                                    </form>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                          <li class="pb-1 pl-2">
+                                            <form action="/dosen-bimbingan-setuju" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
+                                                <input type="hidden" name="nim" value="{{ $NIM }}">
+                                                <button class="btn btn-success tombol border-0 text-center" name="op">
+                                                    Setuju
+                                                </button>
+                                            </form>
+                                          </li>
+                                          <li class="pb-1 pl-2">
+                                            <form action="/dosen-bimbingan-menolak" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
+                                                <input type="hidden" name="nim" value="{{ $NIM }}">
+                                                <button class="btn btn-danger tombol border-0 text-center" name="op">
+                                                    Tolak
+                                                </button>
+                                            </form>
+                                          </li>
+                                          <li class="pb-1 pl-2">
+                                            <form action="/dosen-bimbingan-ACCFinal" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
+                                                <input type="hidden" name="nim" value="{{ $NIM }}">
+                                                <button class="btn btn-primary tombol border-0 text-center" name="op">
+                                                    ACC Final
+                                                </button>
+                                            </form>
+                                          </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

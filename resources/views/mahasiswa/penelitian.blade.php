@@ -45,7 +45,6 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href="/mahasiswa-penelitian-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
         </div>
@@ -70,7 +69,17 @@
                         @foreach($penelitian as $item)
                             <tr>
                                 <td>{{ $item->JUDUL_TA }}</td>
-                                <td>{{ $item->STATUS }}</td>
+                                <td>
+                                    <?php
+                                    if ($item->STATUS == 5){
+                                        echo "ACC";
+                                    }else if ($item->STATUS == 2){
+                                        echo "Sedang Bimbingan";
+                                    } else if ($item->STATUS == 1){
+                                        echo "Menunggu Di ACC";
+                                    } else echo "Ditolak";
+                                    ?>
+                                </td>
                                 <td>
                                     <form action="/#" method="post" class="d-inline">
                                         @csrf

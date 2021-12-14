@@ -45,7 +45,6 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href="/mahasiswa-bimbingan-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
         </div>
@@ -55,6 +54,7 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Link Zoom</th>
                             <th>Status</th>
                             <th>Komentar</th>
                             <th>Laporan TA</th>
@@ -64,6 +64,7 @@
                     <tfoot>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Link Zoom</th>
                             <th>Status</th>
                             <th>Komentar</th>
                             <th>Laporan TA</th>
@@ -74,9 +75,16 @@
                         @foreach($bimbingan as $item)
                             <tr>
                                 <td>{{ $item->TANGGAL }}</td>
+                                <td><?php
+                                    if ($item->STATUS == 1)
+                                    echo "Link Zoom Active";
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
-                                    if ($item->STATUS == 2){
+                                    if ($item->STATUS == 5){
+                                        echo "Final";
+                                    }else if ($item->STATUS == 2){
                                         echo "Menunggu Disetujui";
                                     } else if ($item->STATUS == 1){
                                         echo "Disetujui";

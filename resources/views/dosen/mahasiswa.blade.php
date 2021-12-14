@@ -82,9 +82,9 @@
                                 <td>{{ $item->NO_TELPON }}</td>
                                 <td>{{ $item->EMAIL }}</td>
                                 <td>
-                                    <form action="#" method="post" class="d-inline">
+                                    <form action="/dosen-bimbingan" method="post" class="d-inline">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
+                                        <input type="hidden" name="nim" value="{{ $item->NIM }}">
                                         <button class="btn btn-success tombol border-0">
                                             Bimbingan
                                         </button>

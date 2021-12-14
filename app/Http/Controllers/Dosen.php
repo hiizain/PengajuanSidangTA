@@ -6,17 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use App\Models\Bimbingan;
 use App\Models\Penelitian;
+use Illuminate\Support\Facades\Auth;
 
 class Dosen extends Controller
 {
     public function mahasiswa(){
-        $mahasiswa = Mahasiswa::all();
+        $mahasiswa = Mahasiswa::where('NIP_DOSEN', Auth::user()->username)->get();
         return view('dosen/mahasiswa', ['mahasiswa'=>$mahasiswa]);
     }
 
-    public function bimbingan(){
-        $bimbingan = Bimbingan::all();
-        return view('dosen/bimbingan', ['bimbingan'=>$bimbingan]);
+    public function bimbingan(Request $request){
+        $penelitian = Penelitian::where('NIM', $request->nim)->first();
+        $bimbingan = Bimbingan::where('ID_PENELITIAN', $penelitian->ID_PENELITIAN)->get();
+        return view('dosen/bimbingan', ['bimbingan'=>$bimbingan, 'NIM'=>$request->nim]);
     }
 
     public function setujuBimbingan(Request $request){
@@ -25,9 +27,9 @@ class Dosen extends Controller
         if($bimbingan->update([
             'STATUS'=>$status
             ])){
-            return redirect('/dosen-bimbingan')->with('updateSuccess', 'Data berhasil dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
-            return back()->with('updateError', 'Data gagal dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         }
     }
 
@@ -37,27 +39,21 @@ class Dosen extends Controller
         if($bimbingan->update([
             'STATUS'=>$status
             ])){
-            return redirect('/dosen-bimbingan')->with('updateSuccess', 'Data berhasil dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
-            return back()->with('updateError', 'Data gagal dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         }
     }
 
     public function ACCFinalBimbingan(Request $request){
         $bimbingan = Bimbingan::where('ID_BIMBINGAN',$request->id);
-        $penelitian = Penelitian::where('ID_PENELITIAN',$bimbingan->ID_PENELITIAN);
         $statusBim = 5;
-        $statusPnlt = 5;
         if($bimbingan->update([
             'STATUS'=>$statusBim
-            ]) 
-            && 
-            $penelitian->update([
-            'STATUS'=>$statusPnlt
             ])){
-            return redirect('/dosen-bimbingan')->with('updateSuccess', 'Data berhasil dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
-            return back()->with('updateError', 'Data gagal dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         }
     }
 
@@ -66,9 +62,9 @@ class Dosen extends Controller
         if($bimbingan->update([
             'KOMENTAR'=>$request->komentar
             ])){
-            return redirect('/dosen-bimbingan')->with('updateSuccess', 'Data berhasil dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
-            return back()->with('updateError', 'Data gagal dirubah');
+            return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         }
     }
 }

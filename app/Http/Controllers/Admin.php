@@ -13,7 +13,20 @@ class Admin extends Controller
 {
     public function mahasiswa(){
         $mahasiswa = Mahasiswa::all();
-        return view('admin/mahasiswa', ['mahasiswa'=>$mahasiswa]);
+        $dosen = Dosen::all();
+        $dosenSet = Dosen::all();
+        return view('admin/mahasiswa', ['mahasiswa'=>$mahasiswa, 'dosen'=>$dosen, 'dosenSet'=>$dosenSet]);
+    }
+
+    public function setDosen(Request $request){
+        $mahasiswa = Mahasiswa::where('NIM',$request->nim);
+        if($mahasiswa->update([
+            'NIP_DOSEN'=>$request->NIP
+            ])){
+            return redirect('/admin-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
+        } else {
+            return redirect('/admin-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
+        }
     }
 
     public function tambahMhs(){
