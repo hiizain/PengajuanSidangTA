@@ -4,10 +4,9 @@
 
 <div class="container m-5 p-5">
     <div class="row justify-content-md-center">
-        <div class="col-xl-10 col-lg-12 col-md-9">       
+        <div class="col-xl-5 col-lg-6 col-md-4">       
             <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                <div class="col-lg-6">
+                <div class="">
                     <div class="p-5">
                         @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
