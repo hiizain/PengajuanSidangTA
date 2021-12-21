@@ -72,7 +72,7 @@
           <li class="nav-link scrollto">
             <form action="/logout" method="post">
               @csrf
-              <button class="getstarted scrollto" href="/logout"><span>Loguot</span> <i class="bi bi-chevron-down"></i></button>
+              <button class="getstarted scrollto" href="/logout"><span>Loguot</span><i class="fas fa-sign-out-alt ml-3"></i></button>
             </form>
           </li>
         </ul>
@@ -108,7 +108,7 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fas fa-fw fa-cog"></i>
+                  <i class="fas fa-database"></i>
                   <span>Master</span>
               </a>
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -125,7 +125,7 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePendukung"
                   aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-wrench"></i>
+                  <i class="fas fa-plus-circle"></i>
                   <span>Pendukung</span>
               </a>
               <div id="collapsePendukung" class="collapse" aria-labelledby="headingUtilities"
@@ -134,7 +134,7 @@
                       <h6 class="collapse-header">Data Pendukung:</h6>
                       <a class="collapse-item" href="/balita">Penelitian TA</a>
                       <a class="collapse-item" href="/balita">Bimbingan</a>
-                      <a class="collapse-item" href="/user">Sidang</a>
+                      <a class="collapse-item" href="/admin-sidang">Sidang</a>
                   </div>
               </div>
           </li>

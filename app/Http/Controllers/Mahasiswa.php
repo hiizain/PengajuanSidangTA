@@ -67,33 +67,26 @@ class Mahasiswa extends Controller
                 return back()->with('tambahError', 'Data gagal ditambahkan');
         } else 
             return back()->with('tambahError', 'Data gagal ditambahkan');
-        
-        
+    }
+
+    public function ajukanSidang(Request $request){
+        $sidang = new Sidang;
+        $sidang->NIM = Auth::user()->username;
+        $sidang->STATUS = 2;
+        $bimbingan = Bimbingan::where('ID_BIMBINGAN', $request->id)->first();
+        $sidang->LAPORAN_TA_FINAL = $bimbingan->LAPORAN_TA;
+        $sidang->PATH_LAPORAN_TA_FINAL = $bimbingan->PATH_LAPORAN_TA;
+
+        if($sidang->save()){
+            return redirect('/mahasiswa-sidang')->with('tambahSuccess', 'Data berhasil ditambahkan');
+        } else 
+            return back()->with('tambahError', 'Data gagal ditambahkan');
     }
 
     public function sidang(){
-        $sidang = Sidang::all();
+        $sidang = Sidang::where('NIM', Auth::user()->username)->get();
         return view('mahasiswa/sidang', ['sidang'=>$sidang]);
     }
 
-    public function tambahSidang(){
-        return view('mahasiswa/tambah/sidang');
-    }
-
-    public function createSidang(Request $request){
-        $sidang = new Sidang;
-        $sidang->STATUS = 1;
-        $sidang->LAPORAN_TA = $request-file('laporan_ta');
-
-        if($request->file('laporan_ta')){
-            $request->file('laporan_ta')->store('file-laporan');
-            if($sidang->save()){
-                return redirect('/mahasiswa-sidang')->with('tambahSuccess', 'Data berhasil ditambahkan');
-            } else 
-                return back()->with('tambahError', 'Data gagal ditambahkan');
-        } else 
-            return back()->with('tambahError', 'Data gagal ditambahkan');
-        
-        
-    }
+    
 }

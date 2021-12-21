@@ -83,7 +83,24 @@
                                 <td>
                                     <?php
                                     if ($item->STATUS == 5){
-                                        echo "Final";
+                                        ?>Final <br><?php
+                                        if ($bimbingan->whereIn('STATUS', [3,5])->count()>=8){
+                                            ?>
+                                            <form action="/mahasiswa-ajukanSidang" method="post" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
+                                            <button class="btn btn-success tombol border-0">
+                                                Ajukan Sidang
+                                            </button>
+                                            </form>
+                                            <?php
+                                        } else if ($bimbingan->whereIn('STATUS', [3,5])->count()<8){
+                                            ?><h6 class="text-danger">(*) Jadwalkan lagi bimbingan agar dapat mengajukan Sidang</h6>
+                                            <?php
+                                            echo "";
+                                        }
+                                    }else if ($item->STATUS == 3){
+                                        echo "Selesai";
                                     }else if ($item->STATUS == 2){
                                         echo "Menunggu Disetujui";
                                     } else if ($item->STATUS == 1){

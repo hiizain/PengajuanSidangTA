@@ -3,9 +3,10 @@
 @section('container')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Mahasiswa</h1>
-    <p class="mb-4">Tabel di bawah berisi data-data Mahasiswa yang dibimbing.</p>
+    <h1 class="h3 mb-2 text-gray-800">Data Sidang (Dosen Penguji)</h1>
+    <p class="mb-4">Tabel di bawah berisi data-data Jadwal Sidang TA sebagai Dosen Penguji.</p>
 
+    <!-- Page Heading -->
     <div>
         @if (session()->has('tambahSuccess'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -36,13 +37,7 @@
                 {{ session('deleteError') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif 
-        @if (session()->has('bimbinganError'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('bimbinganError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif  
+        @endif   
     </div> 
 
     <!-- DataTales Example -->
@@ -50,7 +45,11 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-sm-6 py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Sidang</h6>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a href="/mahasiswa-sidang-tambah" class="btn btn-primary tombol">Tambah Data</a>
+                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
         </div>
@@ -60,37 +59,59 @@
                     <thead>
                         <tr>
                             <th>NIM</th>
-                            <th>Nama</th>
-                            <th>Prodi</th>
-                            <th>Nomor Telp.</th>
-                            <th>Email</th>
+                            <th>Jadwal Sidang</th>
+                            <th>Hasil</th>
+                            <th>Status Sidang</th>
+                            <th>Laporan Final</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>NIM</th>
-                            <th>Nama</th>
-                            <th>Prodi</th>
-                            <th>Nomor Telp.</th>
-                            <th>Email</th>
+                            <th>Jadwal Sidang</th>
+                            <th>Hasil</th>
+                            <th>Status Sidang</th>
+                            <th>Laporan Final</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($mahasiswa as $item)
+                        @foreach($sidang as $item)
                             <tr>
                                 <td>{{ $item->NIM }}</td>
-                                <td>{{ $item->NAMA }}</td>
-                                <td>{{ $item->PRODI }}</td>
-                                <td>{{ $item->NO_TELPON }}</td>
-                                <td>{{ $item->EMAIL }}</td>
+                                <td>{{ $item->TANGGAL }}</td>
+                                <td>{{ $item->HASIL }}</td>
                                 <td>
-                                    <form action="/dosen-bimbingan" method="post" class="d-inline">
+                                    <?php
+                                     if ($item->STATUS == 3){
+                                        echo "Selesai";
+                                    }else if ($item->STATUS == 2){
+                                        echo "Menunggu Dijadwalkan";
+                                    } else if ($item->STATUS == 1){
+                                        echo "Telah Dijadwalkan";
+                                    } else echo "Ditolak";
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="{{ asset('storage/' . $item->PATH_LAPORAN_TA_FINAL) }}" 
+                                        target="_blank">
+                                        {{ $item->LAPORAN_TA_FINAL }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="/#" method="post" class="d-inline">
                                         @csrf
-                                        <input type="hidden" name="nim" value="{{ $item->NIM }}">
-                                        <button class="btn btn-success tombol border-0">
-                                            Bimbingan
+                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
+                                        <button class="btn btn-primary tombol border-0">
+                                            Edit
+                                        </button>
+                                    </form>
+                                    <form action="/#" method="post" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
+                                        <button class="btn btn-danger tombol border-0" onclick="return confirm('Akan menghapus data');">
+                                            Hapus
                                         </button>
                                     </form>
                                 </td>
@@ -102,4 +123,5 @@
         </div>
     </div>
 
-@endsection    
+@endsection 
+

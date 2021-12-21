@@ -72,7 +72,7 @@
           <li class="nav-link scrollto">
             <form action="/logout" method="post">
               @csrf
-              <button class="getstarted scrollto" href="/logout"><span>Loguot</span> <i class="bi bi-chevron-down"></i></button>
+              <button class="getstarted scrollto" href="/logout"><span>Loguot</span><i class="fas fa-sign-out-alt ml-3"></i></button>
             </form>
           </li>
         </ul>
@@ -107,30 +107,23 @@
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
             <a class="nav-link" href="/dosen-mahasiswa">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-hands-helping"></i>
                 <span>Bimbingan</span></a>
           </li>
 
-          <!-- Nav Item - Master Collapse Menu -->
+          <!-- Nav Item - Pendukung Collapse Menu -->
           <li class="nav-item">
-            <a class="nav-link" href="/dosen-sidang">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Sidang</span></a>
-          </li>
-
-          <!-- Nav Item - View Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseView"
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePendukung"
                   aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-history"></i>
-                  <span>View History Data</span>
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Sidang</span>
               </a>
-              <div id="collapseView" class="collapse" aria-labelledby="headingUtilities"
+              <div id="collapsePendukung" class="collapse" aria-labelledby="headingUtilities"
                   data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Histori Data Masukan:</h6>
-                      <a class="collapse-item" href="/hposyandu">History Posyandu</a>
-                      <a class="collapse-item" href="/hbalita">Histori Balita</a>
+                      <h6 class="collapse-header">Sidang TA:</h6>
+                      <a class="collapse-item" href="/dosen-sidangDosbim">Sidang (Dosbim)</a>
+                      <a class="collapse-item" href="/dosen-sidangDosenUji">Sidang (Dosen Uji)</a>
                   </div>
               </div>
           </li>

@@ -72,7 +72,7 @@
           <li class="nav-link scrollto">
             <form action="/logout" method="post">
               @csrf
-              <button class="getstarted scrollto" href="/logout"><span>Loguot</span> <i class="bi bi-chevron-down"></i></button>
+              <button class="getstarted scrollto" href="/logout"><span>Loguot</span><i class="fas fa-sign-out-alt ml-3"></i></button>
             </form>
           </li>
         </ul>
@@ -107,21 +107,21 @@
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
               <a class="nav-link" href="/mahasiswa-penelitian">
-                  <i class="fas fa-fw fa-wrench"></i>
+                  <i class="fas fa-hourglass-start"></i>
                   <span>Penelitian TA</span></a>
           </li>
 
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
             <a class="nav-link" href="/mahasiswa-bimbingan">
-                <i class="fas fa-fw fa-wrench"></i>
+                <i class="fas fa-hands-helping"></i>
                 <span>Bimbingan</span></a>
           </li>
 
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">
             <a class="nav-link" href="/mahasiswa-sidang">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-graduation-cap"></i>
                 <span>Sidang</span></a>
           </li>
 

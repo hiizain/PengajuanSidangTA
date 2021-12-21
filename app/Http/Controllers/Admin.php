@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\User;
 use App\Models\Dosen;
 use App\Models\Admin as PAA;
+use App\Models\Sidang;
 use Illuminate\Support\Facades\Hash;
 
 class Admin extends Controller
@@ -118,5 +119,60 @@ class Admin extends Controller
         } else 
             return back()->with('tambahError', 'Data gagal ditambahkan');
         
+    }
+
+    public function sidang(){
+        $sidang = Sidang::all();
+        return view('admin/sidang', ['sidang'=>$sidang]);
+    }
+
+    public function sidangJadwalkan(Request $request){
+        $mahasiswa = Mahasiswa::where('NIM',$request->nim)->get();
+        $a=0;
+        foreach ($mahasiswa as $item){
+        $array[$a] = $item->NIP_DOSEN;
+        $a++;
+        }
+        $dosen = Dosen::whereNotIn('NIP',$array)->get();
+        $sidang = Sidang::all();
+        return view('admin/tambah/sidang', ['sidang'=>$sidang, 'dosen'=>$dosen, 'id'=>$request->id]);
+    }
+
+    public function jadwalkanSidang(Request $request){
+        $sidang = Sidang::where('ID_SIDANG',$request->id);
+        $status = 1;
+        if($sidang->update([
+            'TANGGAL'=>$request->tanggal_sidang,
+            'NIP'=>$request->nip,
+            'STATUS'=>$status
+            ])){
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        } else {
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        }
+    }
+
+    public function sidangTolak(Request $request){
+        $sidang = Sidang::where('ID_SIDANG',$request->id);
+        $status = 0;
+        if($sidang->update([
+            'STATUS'=>$status
+            ])){
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        } else {
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        }
+    }
+
+    public function sidangSelesai(Request $request){
+        $sidang = Sidang::where('ID_SIDANG',$request->id);
+        $status = 3;
+        if($sidang->update([
+            'STATUS'=>$status
+            ])){
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        } else {
+            return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
+        }
     }
 }

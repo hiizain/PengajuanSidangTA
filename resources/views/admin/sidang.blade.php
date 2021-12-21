@@ -1,6 +1,8 @@
-@extends('../mahasiswa/layouts/master')
+@extends('../admin/layouts/master')
 
 @section('container')
+    <h1 class="h3 mb-2 text-gray-800">Data Sidang</h1>
+    <p class="mb-4">Tabel di bawah berisi data-data Sidang TA.</p>
 
     <!-- Page Heading -->
     <div>
@@ -54,6 +56,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>NIM</th>
                             <th>Jadwal Sidang</th>
                             <th>Hasil</th>
                             <th>Status Sidang</th>
@@ -63,6 +66,7 @@
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>NIM</th>
                             <th>Jadwal Sidang</th>
                             <th>Hasil</th>
                             <th>Status Sidang</th>
@@ -73,6 +77,7 @@
                     <tbody>
                         @foreach($sidang as $item)
                             <tr>
+                                <td>{{ $item->NIM }}</td>
                                 <td>{{ $item->TANGGAL }}</td>
                                 <td>{{ $item->HASIL }}</td>
                                 <td>
@@ -93,20 +98,43 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <form action="/#" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
-                                        <button class="btn btn-primary tombol border-0">
-                                            Edit
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Action
                                         </button>
-                                    </form>
-                                    <form action="/#" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
-                                        <button class="btn btn-danger tombol border-0" onclick="return confirm('Akan menghapus data');">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                          <li class="pb-1 pl-2">
+                                            <form action="/admin-sidang-jadwalkan" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_SIDANG }}">
+                                                <input type="hidden" name="nim" value="{{ $item->NIM }}">
+                                                <button class="btn btn-success tombol border-0 text-center" name="op">
+                                                    Jadwalkan
+                                                </button>
+                                            </form>
+                                          </li>
+                                          <li class="pb-1 pl-2">
+                                            <form action="admin-sidang-tolak" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_SIDANG }}">
+                                                <input type="hidden" name="nim" value="{{ $item->NIM }}">
+                                                <button class="btn btn-danger tombol border-0 text-center" name="op">
+                                                    Tolak
+                                                </button>
+                                            </form>
+                                          </li>
+                                          <li class="pb-1 pl-2">
+                                            <form action="admin-sidang-selesai" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_SIDANG }}">
+                                                <input type="hidden" name="nim" value="{{ $item->NIM }}">
+                                                <button class="btn btn-secondary tombol border-0 text-center" name="op">
+                                                    Selesai
+                                                </button>
+                                            </form>
+                                          </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

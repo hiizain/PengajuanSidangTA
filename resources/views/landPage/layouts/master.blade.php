@@ -69,7 +69,7 @@
           <li><a class="nav-link scrollto " href="#hero">Skema</a></li>
           <li><a class="nav-link scrollto " href="#hero">Cyberampus</a></li>
           <li><a class="nav-link scrollto" href="#about">HEBAT UNAIR</a></li>
-          <li class="dropdown"><a class="getstarted scrollto" href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="getstarted scrollto" href="#"><i class="fas fa-sign-in-alt mr-3"></i><span>Login</span></i></a>
             <ul>
               <li><a href="/login-admin">PAA</a></li>
               <li><a href="/login-dosen">Dosen</a></li>

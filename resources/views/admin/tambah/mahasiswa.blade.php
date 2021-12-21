@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Tambahkan Data Kecamatan!</h1>
+            <h1 class="h4 text-gray-900 mb-4">Tambahkan Data Mahasiswa!</h1>
         </div>
         <form action="/admin-mahasiswa-create" method="post">
             @csrf

@@ -3,10 +3,23 @@
 @section('container')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Daftar Balita</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-        For more information about DataTables, please visit the <a target="_blank"
-            href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Data Bimbingan</h1>
+    <p class="mb-4">Tabel di bawah berisi data-data proses bimbingan mahasiswa.</p>
+
+    <table class="col-md-8 mb-4">
+        <tr>
+            <th>Nama</th>
+            <td>: {{ $mahasiswa->NAMA }}</td>
+        </tr>
+        <tr>
+            <th>NIM</th>
+            <td>: {{ $mahasiswa->NIM }}</td>
+        </tr>
+        <tr>
+            <th>Prodi</th>
+            <td>: {{ $mahasiswa->PRODI }}</td>
+        </tr>
+    </table>
 
     <div>
         @if (session()->has('tambahSuccess'))
@@ -39,6 +52,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif   
+        @if (session()->has('bimbinganError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('bimbinganError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif  
     </div> 
 
     <!-- DataTales Example -->
@@ -84,7 +103,9 @@
                                 </td>
                                 <td>
                                     <?php
-                                    if ($item->STATUS == 2){
+                                    if ($item->STATUS == 5){
+                                        echo "ACC Final";
+                                    } else if ($item->STATUS == 2){
                                         echo "Menunggu Disetujui";
                                     } else if ($item->STATUS == 1){
                                         echo "Disetujui";
@@ -133,6 +154,16 @@
                                                 <input type="hidden" name="nim" value="{{ $NIM }}">
                                                 <button class="btn btn-danger tombol border-0 text-center" name="op">
                                                     Tolak
+                                                </button>
+                                            </form>
+                                          </li>
+                                          <li class="pb-1 pl-2">
+                                            <form action="/dosen-bimbingan-selesai" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->ID_BIMBINGAN }}">
+                                                <input type="hidden" name="nim" value="{{ $NIM }}">
+                                                <button class="btn btn-secondary tombol border-0 text-center" name="op">
+                                                    Selesai
                                                 </button>
                                             </form>
                                           </li>

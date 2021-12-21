@@ -39,6 +39,12 @@ Route::get('/admin-dosen', [Admin::class, 'dosen']);
 Route::get('/admin-dosen-tambah', [Admin::class, 'tambahDosen']);
 Route::post('/admin-dosen-create', [Admin::class, 'createDosen']);
 
+Route::get('/admin-sidang', [Admin::class, 'sidang']);
+Route::post('/admin-sidang-jadwalkan', [Admin::class, 'sidangJadwalkan']);
+Route::post('/admin-sidang-jadwal', [Admin::class, 'jadwalkanSidang']);
+Route::post('/admin-sidang-tolak', [Admin::class, 'sidangTolak']);
+Route::post('/admin-sidang-selesai', [Admin::class, 'sidangSelesai']);
+
 
 // Dosen
 Route::get('/dosen-mahasiswa', [Dosen::class, 'mahasiswa']);
@@ -46,8 +52,12 @@ Route::get('/dosen-mahasiswa', [Dosen::class, 'mahasiswa']);
 Route::post('/dosen-bimbingan', [Dosen::class, 'bimbingan']);
 Route::post('/dosen-bimbingan-setuju', [Dosen::class, 'setujuBimbingan']);
 Route::post('/dosen-bimbingan-menolak', [Dosen::class, 'menolakBimbingan']);
+Route::post('/dosen-bimbingan-selesai', [Dosen::class, 'selesaiBimbingan']);
 Route::post('/dosen-bimbingan-ACCFinal', [Dosen::class, 'ACCFinalBimbingan']);
 Route::post('/dosen-bimbingan-komentar', [Dosen::class, 'komentarBimbingan']);
+
+Route::get('/dosen-sidangDosbim', [Dosen::class, 'sidangDosbim']);
+Route::get('/dosen-sidangDosenUji', [Dosen::class, 'sidangDosenUji']);
 
 
 // Mahasiswa
@@ -62,8 +72,7 @@ Route::get('/mahasiswa-bimbingan-tambah', [Mahasiswa::class, 'tambahBimbingan'])
 Route::post('/mahasiswa-bimbingan-create', [Mahasiswa::class, 'createBimbingan']);
 
 Route::get('/mahasiswa-sidang', [Mahasiswa::class, 'sidang']);
-Route::get('/mahasiswa-sidang-tambah', [Mahasiswa::class, 'tambahSidang']);
-Route::post('/mahasiswa-sidang-create', [Mahasiswa::class, 'createSidang']);
+Route::post('/mahasiswa-ajukanSidang', [Mahasiswa::class, 'ajukanSidang']);
 
 
 // Login
