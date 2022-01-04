@@ -56,7 +56,7 @@
 
       <div class="logo">
         <h1>
-          <a href="index.html">
+          <a href="#">
             <img src="assets2/img/logo.PNG" alt="Logo UNAIR">
           </a>
         </h1>
@@ -91,7 +91,7 @@
 
           <!-- Nav Item - Dashboard -->
           <li class="nav-item">
-              <a class="nav-link" href="/home-master">
+              <a class="nav-link" href="/dosen">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
                   <span>Dashboard</span></a>
           </li>
@@ -99,10 +99,12 @@
           <!-- Divider -->
           <hr class="sidebar-divider">
 
-          <!-- Heading -->
-          <div class="sidebar-heading">
-              Super Admin
-          </div>
+          <!-- Nav Item - Master Collapse Menu -->
+          <li class="nav-item">
+            <a class="nav-link" href="/dosen">
+              <i class="fas fa-user"></i>
+                <span>Profil</span></a>
+          </li>
 
           <!-- Nav Item - Master Collapse Menu -->
           <li class="nav-item">

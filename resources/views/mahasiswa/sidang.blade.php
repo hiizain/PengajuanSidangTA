@@ -43,10 +43,6 @@
                 <div class="col-sm-6 py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Sidang</h6>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-sidang-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
-                </div>
             </div>
         </div>
         <div class="card-body">
@@ -55,18 +51,20 @@
                     <thead>
                         <tr>
                             <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -74,7 +72,7 @@
                         @foreach($sidang as $item)
                             <tr>
                                 <td>{{ $item->TANGGAL }}</td>
-                                <td>{{ $item->HASIL }}</td>
+                                <td>{{ $item->LINK_ZOOM }}</td>
                                 <td>
                                     <?php
                                     if ($item->STATUS == 3){
@@ -92,6 +90,7 @@
                                         {{ $item->LAPORAN_TA_FINAL }}
                                     </a>
                                 </td>
+                                <td>{{ $item->HASIL }}</td>
                                 <td>
                                     <form action="/#" method="post" class="d-inline">
                                         @csrf

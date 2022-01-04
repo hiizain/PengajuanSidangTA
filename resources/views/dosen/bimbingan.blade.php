@@ -157,6 +157,7 @@
                                                 </button>
                                             </form>
                                           </li>
+                                          @if($item->STATUS == 1 || $item->STATUS == 5)
                                           <li class="pb-1 pl-2">
                                             <form action="/dosen-bimbingan-selesai" method="post">
                                                 @csrf
@@ -167,6 +168,8 @@
                                                 </button>
                                             </form>
                                           </li>
+                                          @endif
+                                          @if($bimbingan->whereIn('STATUS', [3,5])->count()>=8)
                                           <li class="pb-1 pl-2">
                                             <form action="/dosen-bimbingan-ACCFinal" method="post">
                                                 @csrf
@@ -177,6 +180,7 @@
                                                 </button>
                                             </form>
                                           </li>
+                                          @endif
                                         </ul>
                                     </div>
                                 </td>

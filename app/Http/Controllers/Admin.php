@@ -9,20 +9,33 @@ use App\Models\Dosen;
 use App\Models\Admin as PAA;
 use App\Models\Sidang;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class Admin extends Controller
 {
+    public function index(){
+        $admin = PAA::where('ID_PEG',Auth::user()->username)->first();
+        return view('admin/welcome', ['admin'=>$admin]);
+    }
+
     public function mahasiswa(){
         $mahasiswa = Mahasiswa::all();
         $dosen = Dosen::all();
-        $dosenSet = Dosen::all();
+        $dosenSet = Dosen::where('MAHASISWA_DIBIMBING', '<', 4)->get();
         return view('admin/mahasiswa', ['mahasiswa'=>$mahasiswa, 'dosen'=>$dosen, 'dosenSet'=>$dosenSet]);
     }
 
     public function setDosen(Request $request){
         $mahasiswa = Mahasiswa::where('NIM',$request->nim);
+        $dosen = Dosen::where('NIP', $request->NIP)->first();
+        $mahasiswaDibimbing = $dosen->MAHASISWA_DIBIMBING+1;
+        $dosen = Dosen::where('NIP', $request->NIP);
         if($mahasiswa->update([
-            'NIP_DOSEN'=>$request->NIP
+            'NIP_DOSEN_PEMBIMBING'=>$request->NIP
+            ])
+            &&
+            $dosen->update([
+            'MAHASISWA_DIBIMBING'=> $mahasiswaDibimbing
             ])){
             return redirect('/admin-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
@@ -76,6 +89,7 @@ class Admin extends Controller
         $dosen->ALAMAT = $request->alamat;
         $dosen->NO_TELPON = $request->no_telpon;
         $dosen->EMAIL = $request->email;
+        $dosen->MAHASISWA_DIBIMBING = 0;
 
         $request->password = $request->nip;
         $request->password = Hash::make($request->password);
@@ -103,6 +117,7 @@ class Admin extends Controller
         $admin = new PAA;
         $admin->ID_PEG = $request->id_peg;
         $admin->NAMA = $request->nama;
+        $admin->PRODI = $request->prodi;
         $admin->JENIS_KELAMIN = $request->jenis_kelamin;
         $admin->TANGGAL_LAHIR = $request->tanggal_lahir;
         $admin->ALAMAT = $request->alamat;
@@ -122,17 +137,14 @@ class Admin extends Controller
     }
 
     public function sidang(){
-        $sidang = Sidang::all();
+        $sidang = Sidang::where('ID_PEG', Auth::user()->username)->get();
         return view('admin/sidang', ['sidang'=>$sidang]);
     }
 
     public function sidangJadwalkan(Request $request){
-        $mahasiswa = Mahasiswa::where('NIM',$request->nim)->get();
-        $a=0;
-        foreach ($mahasiswa as $item){
-        $array[$a] = $item->NIP_DOSEN;
-        $a++;
-        }
+        $mahasiswa = Mahasiswa::where('NIM',$request->nim)->first();
+        $array[0] = $mahasiswa->NIP_DOSEN_PEMBIMBING;
+        //return $array;
         $dosen = Dosen::whereNotIn('NIP',$array)->get();
         $sidang = Sidang::all();
         return view('admin/tambah/sidang', ['sidang'=>$sidang, 'dosen'=>$dosen, 'id'=>$request->id]);
@@ -143,8 +155,11 @@ class Admin extends Controller
         $status = 1;
         if($sidang->update([
             'TANGGAL'=>$request->tanggal_sidang,
-            'NIP'=>$request->nip,
-            'STATUS'=>$status
+            'NIP1'=>$request->nip1,
+            'NIP2'=>$request->nip2,
+            'NIP3'=>$request->nip3,
+            'LINK_ZOOM'=>$request->link_zoom,
+            'STATUS'=>$status,
             ])){
             return redirect('/admin-sidang')->with('updateSuccess', 'Data berhasil dirubah');
         } else {

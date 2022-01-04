@@ -1,8 +1,6 @@
 @extends('../admin/layouts/master')
 
 @section('container')
-    <h1 class="h3 mb-2 text-gray-800">Data Sidang</h1>
-    <p class="mb-4">Tabel di bawah berisi data-data Sidang TA.</p>
 
     <!-- Page Heading -->
     <div>
@@ -45,10 +43,6 @@
                 <div class="col-sm-6 py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Sidang</h6>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-sidang-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
-                </div>
             </div>
         </div>
         <div class="card-body">
@@ -57,10 +51,11 @@
                     <thead>
                         <tr>
                             <th>NIM</th>
-                            <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Tanggal Sidang</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -68,9 +63,10 @@
                         <tr>
                             <th>NIM</th>
                             <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -79,7 +75,7 @@
                             <tr>
                                 <td>{{ $item->NIM }}</td>
                                 <td>{{ $item->TANGGAL }}</td>
-                                <td>{{ $item->HASIL }}</td>
+                                <td>{{ $item->LINK_ZOOM }}</td>
                                 <td>
                                     <?php
                                     if ($item->STATUS == 3){
@@ -97,6 +93,7 @@
                                         {{ $item->LAPORAN_TA_FINAL }}
                                     </a>
                                 </td>
+                                <td>{{ $item->HASIL }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

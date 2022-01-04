@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Ajukan Penelitian!</h1>
+            <h1 class="h4 text-gray-900 mb-4">Buat Judul Penelitian!</h1>
         </div>
         <form action="/mahasiswa-penelitian-create" method="post">
             @csrf

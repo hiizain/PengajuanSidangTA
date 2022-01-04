@@ -21,11 +21,10 @@ Route::get('/', function () {
     return view('landPage/welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin/welcome');
-});
 
 // Admin
+Route::get('/admin', [Admin::class, 'index']);
+
 Route::get('/admin-admin', [Admin::class, 'admin']);
 Route::get('/admin-admin-tambah', [Admin::class, 'tambahAdmin']);
 Route::post('/admin-admin-create', [Admin::class, 'createAdmin']);
@@ -47,6 +46,8 @@ Route::post('/admin-sidang-selesai', [Admin::class, 'sidangSelesai']);
 
 
 // Dosen
+Route::get('/dosen', [Dosen::class, 'index']);
+
 Route::get('/dosen-mahasiswa', [Dosen::class, 'mahasiswa']);
 
 Route::post('/dosen-bimbingan', [Dosen::class, 'bimbingan']);

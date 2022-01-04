@@ -3,8 +3,6 @@
 @section('container')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Dosen</h1>
-    <p class="mb-4">Tabel di bawah berisi data-data yang berkaitan dengan akun Dosen.</p>
 
     <div>
         @if (session()->has('tambahSuccess'))
@@ -48,7 +46,6 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href="/admin-dosen-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
                 </div>
             </div>
         </div>

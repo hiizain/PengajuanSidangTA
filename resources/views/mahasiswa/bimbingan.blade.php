@@ -44,7 +44,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Bimbingan</h6>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-bimbingan-tambah" class="btn btn-primary tombol">Tambah Data</a>
+                    <a href="/mahasiswa-bimbingan-tambah" class="btn btn-primary tombol">Jadwalkan Bimbingan</a>
                 </div>
             </div>
         </div>
@@ -94,10 +94,6 @@
                                             </button>
                                             </form>
                                             <?php
-                                        } else if ($bimbingan->whereIn('STATUS', [3,5])->count()<8){
-                                            ?><h6 class="text-danger">(*) Jadwalkan lagi bimbingan agar dapat mengajukan Sidang</h6>
-                                            <?php
-                                            echo "";
                                         }
                                     }else if ($item->STATUS == 3){
                                         echo "Selesai";

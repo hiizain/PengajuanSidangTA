@@ -7,12 +7,18 @@ use App\Models\Mahasiswa;
 use App\Models\Bimbingan;
 use App\Models\Penelitian;
 use App\Models\Sidang;
+use App\Models\Dosen as DSN;
 use Illuminate\Support\Facades\Auth;
 
 class Dosen extends Controller
 {
+    public function index(){
+        $dosen = DSN::where('NIP',Auth::user()->username)->first();
+        return view('dosen/welcome', ['dosen'=>$dosen]);
+    }
+
     public function mahasiswa(){
-        $mahasiswa = Mahasiswa::where('NIP_DOSEN', Auth::user()->username)->get();
+        $mahasiswa = Mahasiswa::where('NIP_DOSEN_PEMBIMBING', Auth::user()->username)->orderBy('NIM')->get();
         return view('dosen/mahasiswa', ['mahasiswa'=>$mahasiswa]);
     }
 
@@ -27,10 +33,16 @@ class Dosen extends Controller
     }
 
     public function setujuBimbingan(Request $request){
+        $bimbinganFind = Bimbingan::where('ID_BIMBINGAN',$request->id)->first();
+        $penelitian = Penelitian::where('ID_PENELITIAN', $bimbinganFind->ID_PENELITIAN);
         $bimbingan = Bimbingan::where('ID_BIMBINGAN',$request->id);
-        $status = 1;
+        $statusBim = 1;
         if($bimbingan->update([
-            'STATUS'=>$status
+            'STATUS'=>$statusBim
+            ])
+            &&
+            $penelitian->update([
+                'STATUS'=>2
             ])){
             return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
@@ -70,10 +82,16 @@ class Dosen extends Controller
             'STATUS'=>$statusBim
         ]);
         }
+        $bimbingan = Bimbingan::where('ID_BIMBINGAN',$request->id)->first();
+        $penelitian = Penelitian::where('ID_PENELITIAN', $bimbingan->ID_PENELITIAN);
         $bimbingan = Bimbingan::where('ID_BIMBINGAN',$request->id);
         $statusBim = 5;
         if($bimbingan->update([
             'STATUS'=>$statusBim
+            ])
+            &&
+            $penelitian->update([
+                'STATUS'=>5
             ])){
             return redirect('/dosen-mahasiswa')->with('updateSuccess', 'Data berhasil dirubah');
         } else {
@@ -93,18 +111,24 @@ class Dosen extends Controller
     }
 
     public function sidangDosbim(){
-        $mahasiswa = Mahasiswa::where('NIP_DOSEN', Auth::user()->username)->get();
-        $a=0;
-        foreach ($mahasiswa as $item){
-        $array[$a] = $item->NIM;
-        $a++;
+        $mahasiswa = Mahasiswa::where('NIP_DOSEN_PEMBIMBING', Auth::user()->username)->get();
+        if ($mahasiswa->count()!=0){
+            $a=0;
+            foreach ($mahasiswa as $item){
+            $array[$a] = $item->NIM;
+            $a++;
+            }
+            $sidang = Sidang::whereIn('NIM', $array)->where('STATUS', 1)->get();
+            return view('dosen/sidangDosbim', ['sidang'=>$sidang]);
         }
-        $sidang = Sidang::whereIn('NIM', $array)->get();
-        return view('dosen/sidangDosbim', ['sidang'=>$sidang]);
+        return back()->with('bimbinganError', 'Tidak memiliki mahasiswa bimbingan.');
     }
 
     public function sidangDosenUji(){
-        $sidang = Sidang::where('NIP', Auth::user()->username)->get();
+        $sidang = Sidang::where('NIP1', Auth::user()->username)
+                  ->orWhere('NIP2', Auth::user()->username)
+                  ->orWhere('NIP3', Auth::user()->username)
+                  ->where('STATUS', 1)->get();
         return view('dosen/sidangDosenUji', ['sidang'=>$sidang]);
     }
 }

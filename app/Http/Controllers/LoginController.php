@@ -26,7 +26,7 @@ class LoginController extends Controller
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
         
-                    return redirect()->intended('/mahasiswa-penelitian');
+                    return redirect()->intended('/mahasiswa');
                 } else
                 return back()->with('loginError', 'Login gagal');
             } else
@@ -49,7 +49,7 @@ class LoginController extends Controller
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
         
-                    return redirect()->intended('/dosen-mahasiswa');
+                    return redirect()->intended('/dosen');
                 } else
                 return back()->with('loginError', 'Login gagal');
             } else

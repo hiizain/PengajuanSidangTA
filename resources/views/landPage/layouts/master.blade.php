@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Vesperr Bootstrap Template</title>
+  <title>SI Pengajuan Sidang TA</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,18 +28,6 @@
   <!-- Template Main CSS File -->
   <link href="assets2/css/style.css" rel="stylesheet">
 
-  <!-- Custom fonts for this template -->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
   <!-- =======================================================
   * Template Name: Vesperr - v4.5.0
   * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
@@ -56,7 +44,7 @@
 
       <div class="logo">
         <h1>
-          <a href="index.html">
+          <a href="/">
             <img src="assets2/img/logo.PNG" alt="Logo UNAIR">
           </a>
         </h1>
@@ -84,44 +72,39 @@
   </header><!-- End Header -->
 
   <main id="main">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
 
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
+    <!-- ======= Breadcrumbs Section ======= -->
+    @yield('container')
 
-          <!-- Main Content -->
-          <div id="content">
+  </main><!-- End #main -->
 
-              
-
-              <!-- Begin Page Content -->
-              <div class="container-fluid">
-
-                  @yield('container')
-
-              </div>
-              <!-- /.container-fluid -->
-
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-6 text-lg-left text-center">
+          <div class="copyright">
+            &copy; Copyright <strong>Vesperr</strong>. All Rights Reserved
           </div>
-          <!-- End of Main Content -->
-
-          <!-- Footer -->
-          <footer class="sticky-footer bg-white">
-              <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Your Website 2020</span>
-                  </div>
-              </div>
-          </footer>
-          <!-- End of Footer -->
-
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/vesperr-free-bootstrap-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
+            <a href="#intro" class="scrollto">Home</a>
+            <a href="#about" class="scrollto">About</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+          </nav>
+        </div>
       </div>
-      <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-</main><!-- End #main -->
+    </div>
+  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -136,23 +119,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets2/js/main.js"></script>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="assets/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="assets/js/demo/datatables-demo.js"></script>
 
 </body>
 

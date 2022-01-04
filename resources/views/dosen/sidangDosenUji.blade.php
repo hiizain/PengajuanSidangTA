@@ -47,10 +47,6 @@
                 <div class="col-sm-6 py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Sidang</h6>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <a href="/mahasiswa-sidang-tambah" class="btn btn-primary tombol">Tambah Data</a>
-                    <a href="#" class="btn btn-warning tombol">Restore Data</a>
-                </div>
             </div>
         </div>
         <div class="card-body">
@@ -60,9 +56,10 @@
                         <tr>
                             <th>NIM</th>
                             <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -70,9 +67,10 @@
                         <tr>
                             <th>NIM</th>
                             <th>Jadwal Sidang</th>
-                            <th>Hasil</th>
+                            <th>Link Zoom</th>
                             <th>Status Sidang</th>
                             <th>Laporan Final</th>
+                            <th>Hasil</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -81,7 +79,7 @@
                             <tr>
                                 <td>{{ $item->NIM }}</td>
                                 <td>{{ $item->TANGGAL }}</td>
-                                <td>{{ $item->HASIL }}</td>
+                                <td>{{ $item->LINK_ZOOM }}</td>
                                 <td>
                                     <?php
                                      if ($item->STATUS == 3){
@@ -99,19 +97,13 @@
                                         {{ $item->LAPORAN_TA_FINAL }}
                                     </a>
                                 </td>
+                                <td>{{ $item->HASIL }}</td>
                                 <td>
                                     <form action="/#" method="post" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
-                                        <button class="btn btn-primary tombol border-0">
-                                            Edit
-                                        </button>
-                                    </form>
-                                    <form action="/#" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->ID_BALITA }}">
-                                        <button class="btn btn-danger tombol border-0" onclick="return confirm('Akan menghapus data');">
-                                            Hapus
+                                        <button class="btn btn-success tombol border-0">
+                                            Beri Nilai
                                         </button>
                                     </form>
                                 </td>

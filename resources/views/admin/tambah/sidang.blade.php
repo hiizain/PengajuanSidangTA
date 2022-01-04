@@ -21,23 +21,33 @@
                 <input type="date" class="form-control form-control-user text-center" id="exampleFirstName"
                         placeholder="Tanggal Sidang" name="tanggal_sidang">
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <select name="nip" class="form-control text-center">
-                        <option value="">-Set Dosen-</option>
-                        @foreach ($dosen as $a)
-                            <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <select name="nip" class="form-control text-center">
-                        <option value="">-Set Dosen-</option>
-                        @foreach ($dosen as $a)
-                            <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="form-group">
+                <select name="nip1" class="form-control text-center">
+                    <option value="">-Set Dosen Penguji 1-</option>
+                    @foreach ($dosen as $a)
+                        <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="nip2" class="form-control text-center">
+                    <option value="">-Set Dosen Penguji 2-</option>
+                    @foreach ($dosen as $a)
+                        <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="nip3" class="form-control text-center">
+                    <option value="">-Set Dosen Penguji 3-</option>
+                    @foreach ($dosen as $a)
+                        <option value="{{ $a->NIP }}">{{ $a->NAMA }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
+                        placeholder="Link Zoom Meeting" name="link_zoom">
             </div>
             <hr>
             <div class="form-group row">

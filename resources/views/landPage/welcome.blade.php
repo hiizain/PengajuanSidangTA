@@ -2,49 +2,24 @@
 
 @section('container')
 
-<div class="container mt-5">
-    <div class="row justify-content-md-center">
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
 
-        <!-- Earnings (Monthly) Card Example -->
-        <a class="col-lg-4 col-md-6 mb-4" href="/petugas-balita-tambah">
-            <div class="">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    ORANGTUA</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORANGTUA</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-address-book fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a> 
-
-        <!-- Earnings (Annual) Card Example -->
-        <a class="col-lg-4 col-md-6 mb-4" href="/petugas-hposyandu-tambah">
-            <div class="">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    ORANGTUA</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORANGTUA</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-barcode fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Selamat Datang</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Ini adalah Sistem Informasi Pengajuan Sidang TA</h2>
+          <div data-aos="fade-up" data-aos-delay="800">
+            <a href="#" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
+          <img src="../assets2/img/hero-img.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
     </div>
-</div> 
+
+</section><!-- End Hero -->
 
 @endsection

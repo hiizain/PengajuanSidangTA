@@ -56,7 +56,7 @@
 
       <div class="logo">
         <h1>
-          <a href="index.html">
+          <a href="#">
             <img src="assets2/img/logo.PNG" alt="Logo UNAIR">
           </a>
         </h1>
@@ -91,7 +91,7 @@
 
           <!-- Nav Item - Dashboard -->
           <li class="nav-item">
-              <a class="nav-link" href="/home-master">
+              <a class="nav-link" href="/admin">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
                   <span>Dashboard</span></a>
           </li>
@@ -132,8 +132,7 @@
                   data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Data Pendukung:</h6>
-                      <a class="collapse-item" href="/balita">Penelitian TA</a>
-                      <a class="collapse-item" href="/balita">Bimbingan</a>
+                      <a class="collapse-item" href="/#">Penelitian TA</a>
                       <a class="collapse-item" href="/admin-sidang">Sidang</a>
                   </div>
               </div>

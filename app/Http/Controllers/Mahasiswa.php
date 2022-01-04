@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Bimbingan;
 use App\Models\Penelitian;
 use App\Models\Sidang;
+use App\Models\Admin;
+use App\Models\Mahasiswa as MHS;
 use Illuminate\Support\Facades\Auth;
 
 class Mahasiswa extends Controller
 {
     public function index(){
-        return view('mahasiswa/welcome');
+        $mahasiswa = MHS::where('NIM',Auth::user()->username)->first();
+        return view('mahasiswa/welcome', ['mahasiswa'=>$mahasiswa]);
     }
 
     public function penelitian(){
@@ -42,7 +45,7 @@ class Mahasiswa extends Controller
         $array[$a] = $item->ID_PENELITIAN;
         $a++;
         }
-        $bimbingan = Bimbingan::whereIn('ID_PENELITIAN', $array)->get();
+        $bimbingan = Bimbingan::whereIn('ID_PENELITIAN', $array)->orderBy('TANGGAL', 'desc')->get();
         return view('mahasiswa/bimbingan', ['bimbingan'=>$bimbingan]);
     }
 
@@ -52,8 +55,10 @@ class Mahasiswa extends Controller
     }
 
     public function createBimbingan(Request $request){
+        $mahasiswa = MHS::where('NIM', Auth::user()->username)->first();
         $bimbingan = new Bimbingan;
         $bimbingan->ID_PENELITIAN = $request->id_penelitian;
+        $bimbingan->NIP = $mahasiswa->NIP_DOSEN_PEMBIMBING;
         $bimbingan->TANGGAL = $request->tanggal;
         $bimbingan->STATUS = 2;
         $bimbingan->PATH_LAPORAN_TA = 
@@ -70,8 +75,14 @@ class Mahasiswa extends Controller
     }
 
     public function ajukanSidang(Request $request){
+        $mahasiswa = MHS::where('NIM', Auth::user()->username)->first();
+        $paa = Admin::where('PRODI', $mahasiswa->PRODI)->first();
+        $idPAA = $paa->ID_PEG;
+        $nipDosbing = $mahasiswa->NIP_DOSEN_PEMBIMBING;
         $sidang = new Sidang;
         $sidang->NIM = Auth::user()->username;
+        $sidang->ID_PEG = $idPAA;
+        $sidang->NIP = $nipDosbing;
         $sidang->STATUS = 2;
         $bimbingan = Bimbingan::where('ID_BIMBINGAN', $request->id)->first();
         $sidang->LAPORAN_TA_FINAL = $bimbingan->LAPORAN_TA;
